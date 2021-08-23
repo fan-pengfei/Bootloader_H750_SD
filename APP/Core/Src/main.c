@@ -112,7 +112,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
     HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
     HAL_Delay(500);
-	printf("APP Runing\r\n");
+	printf("Hello,Xiaofei!\r\n");
   }
   /* USER CODE END 3 */
 }
