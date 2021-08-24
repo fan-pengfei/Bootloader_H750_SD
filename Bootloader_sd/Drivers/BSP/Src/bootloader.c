@@ -14,7 +14,7 @@ uint32_t crc32(unsigned char *buf,uint32_t size)
 	}
 	return crc^0xFFFFFFFF;
 }
-uint8_t temp[1024*200];
+uint8_t temp[1024*256];
 uint8_t text[100];
 extern FATFS SDFatFS;    /* File system object for SD logical drive */
 FIL fp_txt,fp_bin,fp_old_bin;
@@ -44,7 +44,28 @@ void read_bin(void)
 		}
 		if(f_size(&fp_old_bin)!=f_size(&fp_bin))
 		{
-			QSPI_W25Qxx_BlockErase_64K(0x00);
+			if(f_size(&fp_bin)<=64*1024)
+			{
+				QSPI_W25Qxx_BlockErase_64K(0x00);
+			}
+			else if((f_size(&fp_bin)<=128*1024)&&(f_size(&fp_bin)>64*1024))
+			{
+				QSPI_W25Qxx_BlockErase_64K(0x00);
+				QSPI_W25Qxx_BlockErase_64K(1024*64);
+			}
+			else if((f_size(&fp_bin)<=64*3*1024)&&(f_size(&fp_bin)>64*2*1024))
+			{
+				QSPI_W25Qxx_BlockErase_64K(0x00);
+				QSPI_W25Qxx_BlockErase_64K(1024*64);
+				QSPI_W25Qxx_BlockErase_64K(1024*64*2);
+			}
+			else if((f_size(&fp_bin)<=64*4*1024)&&(f_size(&fp_bin)>64*3*1024))
+			{
+				QSPI_W25Qxx_BlockErase_64K(0x00);
+				QSPI_W25Qxx_BlockErase_64K(1024*64);
+				QSPI_W25Qxx_BlockErase_64K(1024*64*2);
+				QSPI_W25Qxx_BlockErase_64K(1024*64*3);
+			}
 			QSPI_W25Qxx_WriteBuffer(temp,0x00,f_size(&fp_bin));
 		}
 		//res=f_open(&fp_txt, "sd_bin/log.txt", FA_CREATE_ALWAYS | FA_WRITE | FA_READ);	

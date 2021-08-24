@@ -130,7 +130,7 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void const * argument)
 {
   /* init code for USB_DEVICE */
-	MX_USB_DEVICE_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN StartDefaultTask */
 	OLED_ShowString(0,0,"Hello,World!",16);
 	OLED_Refresh_Gram();
