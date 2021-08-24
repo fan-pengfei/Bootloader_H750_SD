@@ -20,14 +20,15 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "fatfs.h"
+#include "i2c.h"
 #include "sdmmc.h"
-#include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "iic_oled.h"
+#include "usbd_cdc_if.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -93,14 +94,14 @@ int main(void)
   MX_SDMMC1_SD_Init();
   MX_FATFS_Init();
   MX_USB_DEVICE_Init();
-  MX_USART1_UART_Init();
+  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
-
-  HAL_Delay(100);
-  MX_USB_DEVICE_Init();
   f_mount(&SDFatFS, (TCHAR const*)SDPath, 1);
    //QSPI_W25Qxx_Test();
-
+//	OLED_Init();
+//	OLED_Clear();
+//	OLED_Display_On();
+//	OLED_ShowString(0,0,"Hello",16);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -112,7 +113,10 @@ int main(void)
     /* USER CODE BEGIN 3 */
     HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
     HAL_Delay(500);
-	printf("Hello,Xiaofei!\r\n");
+	usb_printf("Hello,Xiaofei!!!\r\nI am app!!!!!!\r\n");
+	HAL_Delay(5);
+	usb_printf("Hello,Xiaofei!!!\r\nI am app!\r\n");
+
   }
   /* USER CODE END 3 */
 }
@@ -174,7 +178,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_SDMMC
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_SDMMC|RCC_PERIPHCLK_I2C2
                               |RCC_PERIPHCLK_USB;
   PeriphClkInitStruct.PLL2.PLL2M = 25;
   PeriphClkInitStruct.PLL2.PLL2N = 180;
@@ -188,12 +192,12 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PLL3.PLL3N = 192;
   PeriphClkInitStruct.PLL3.PLL3P = 2;
   PeriphClkInitStruct.PLL3.PLL3Q = 4;
-  PeriphClkInitStruct.PLL3.PLL3R = 2;
+  PeriphClkInitStruct.PLL3.PLL3R = 6;
   PeriphClkInitStruct.PLL3.PLL3RGE = RCC_PLL3VCIRANGE_0;
   PeriphClkInitStruct.PLL3.PLL3VCOSEL = RCC_PLL3VCOWIDE;
   PeriphClkInitStruct.PLL3.PLL3FRACN = 0;
   PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL2;
-  PeriphClkInitStruct.Usart16ClockSelection = RCC_USART16CLKSOURCE_D2PCLK2;
+  PeriphClkInitStruct.I2c123ClockSelection = RCC_I2C123CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_PLL3;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {

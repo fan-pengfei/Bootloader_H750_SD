@@ -7,9 +7,11 @@
 #include "gpio.h"
 #include "qspi_w25q64.h"
 #include "bootloader.h"
+#include "usbd_core.h"
 typedef  void (*pFunction)(void);
 pFunction JumpToApplication;
 extern FATFS SDFatFS; 
+extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
 void SystemClock_Config(void);
 int main(void)
 {
@@ -23,24 +25,51 @@ int main(void)
 	MX_USART1_UART_Init();
 	QSPI_W25Qxx_Init();
 	HAL_Delay(100);
-	MX_USB_DEVICE_Init();
-	f_mount(&SDFatFS, (TCHAR const*)SDPath, 1);
-	HAL_Delay(100);
-   //QSPI_W25Qxx_Test();
-	read_bin();
-	SCB_DisableICache();		// 关闭ICache
-	SCB_DisableDCache();		// 关闭Dcache
-	SysTick->CTRL = 0;		// 关闭SysTick
-	SysTick->LOAD = 0;		// 清零重载值
-	SysTick->VAL = 0;			// 清零计数值
-	JumpToApplication = (pFunction) (*(__IO uint32_t*) (0x8012000 + 4));	// 设置起始地址
-	__set_MSP(*(__IO uint32_t*) 0x8012000);	// 设置主堆栈指针
-	JumpToApplication();			// 执行跳转
-	while (1)
-	{
-		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
-		HAL_Delay(100);
-	}
+    if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_15)==0)
+    {
+        while(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_15)==0);
+        HAL_Delay(100);
+        MX_USB_DEVICE_Init();
+	    f_mount(&SDFatFS, (TCHAR const*)SDPath, 1);
+	    HAL_Delay(100);
+        //QSPI_W25Qxx_Test();
+	    read_bin();
+        while(1)
+        {
+			printf("\r\nBoot_loader running!\r\n");
+			printf("请把必要文件放到指定路径！\r\n");
+		    HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+		    HAL_Delay(100);
+            if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_15)==0)
+            {
+                HAL_PCD_MspDeInit(&hpcd_USB_OTG_FS);
+				SCB_DisableICache();		// 关闭ICache
+				SCB_DisableDCache();		// 关闭Dcache
+				SysTick->CTRL = 0;		// 关闭SysTick
+				SysTick->LOAD = 0;		// 清零重载值
+				SysTick->VAL = 0;			// 清零计数值
+				JumpToApplication = (pFunction) (*(__IO uint32_t*) (0x8012000 + 4));	// 设置起始地址
+				__set_MSP(*(__IO uint32_t*) 0x8012000);	// 设置主堆栈指针
+				JumpToApplication();			// 执行跳转
+            }
+        }
+    }
+    else
+    {
+        f_mount(&SDFatFS, (TCHAR const*)SDPath, 1);
+	    HAL_Delay(100);
+        //QSPI_W25Qxx_Test();
+	    read_bin();
+        HAL_Delay(100);
+        SCB_DisableICache();		// 关闭ICache
+        SCB_DisableDCache();		// 关闭Dcache
+        SysTick->CTRL = 0;		// 关闭SysTick
+        SysTick->LOAD = 0;		// 清零重载值
+        SysTick->VAL = 0;			// 清零计数值
+        JumpToApplication = (pFunction) (*(__IO uint32_t*) (0x8012000 + 4));	// 设置起始地址
+        __set_MSP(*(__IO uint32_t*) 0x8012000);	// 设置主堆栈指针
+        JumpToApplication();			// 执行跳转
+    }
 }
 
 /**

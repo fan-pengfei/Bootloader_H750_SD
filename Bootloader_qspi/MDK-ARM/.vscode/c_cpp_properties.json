@@ -3,16 +3,16 @@
         {
             "name": "FK750M1",
             "includePath": [
-                "e:\\CubeMx\\h750_Qspiflash\\BOOT引导程序\\Inc",
-                "e:\\CubeMx\\h750_Qspiflash\\BOOT引导程序\\Drivers\\STM32H7xx_HAL_Driver\\Inc",
-                "e:\\CubeMx\\h750_Qspiflash\\BOOT引导程序\\Drivers\\STM32H7xx_HAL_Driver\\Inc\\Legacy",
-                "e:\\CubeMx\\h750_Qspiflash\\BOOT引导程序\\Drivers\\CMSIS\\Device\\ST\\STM32H7xx\\Include",
-                "e:\\CubeMx\\h750_Qspiflash\\BOOT引导程序\\Drivers\\CMSIS\\Include",
+                "e:\\CubeMx\\H750_sd\\Bootloader_qspi\\Inc",
+                "e:\\CubeMx\\H750_sd\\Bootloader_qspi\\Drivers\\STM32H7xx_HAL_Driver\\Inc",
+                "e:\\CubeMx\\H750_sd\\Bootloader_qspi\\Drivers\\STM32H7xx_HAL_Driver\\Inc\\Legacy",
+                "e:\\CubeMx\\H750_sd\\Bootloader_qspi\\Drivers\\CMSIS\\Device\\ST\\STM32H7xx\\Include",
+                "e:\\CubeMx\\H750_sd\\Bootloader_qspi\\Drivers\\CMSIS\\Include",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
-                "e:\\CubeMx\\h750_Qspiflash\\BOOT引导程序\\MDK-ARM",
-                "e:\\CubeMx\\h750_Qspiflash\\BOOT引导程序\\Src",
-                "e:\\CubeMx\\h750_Qspiflash\\BOOT引导程序\\Drivers\\STM32H7xx_HAL_Driver\\Src"
+                "e:\\CubeMx\\H750_sd\\Bootloader_qspi\\MDK-ARM",
+                "e:\\CubeMx\\H750_sd\\Bootloader_qspi\\Src",
+                "e:\\CubeMx\\H750_sd\\Bootloader_qspi\\Drivers\\STM32H7xx_HAL_Driver\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

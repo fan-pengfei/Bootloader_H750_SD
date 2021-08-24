@@ -24,8 +24,8 @@
 #include "usb_device.h"
 #include "usbd_core.h"
 #include "usbd_desc.h"
-#include "usbd_msc.h"
-#include "usbd_storage_if.h"
+#include "usbd_cdc.h"
+#include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -55,6 +55,19 @@ USBD_HandleTypeDef hUsbDeviceFS;
  * -- Insert your external function declaration here --
  */
 /* USER CODE BEGIN 1 */
+void VCP_Status(void)
+{
+    static uint8_t old_status = 0;
+ 
+    if(hUsbDeviceFS.dev_state != old_status)
+    {
+        if(hUsbDeviceFS.dev_state == USBD_STATE_CONFIGURED)
+            printf("连接成功\r\n");
+        else if (hUsbDeviceFS.dev_state == USBD_STATE_SUSPENDED)
+            printf("断开成功\r\n");
+        old_status = hUsbDeviceFS.dev_state;
+    }    
+}
 
 /* USER CODE END 1 */
 
@@ -73,11 +86,11 @@ void MX_USB_DEVICE_Init(void)
   {
     Error_Handler();
   }
-  if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_MSC) != USBD_OK)
+  if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC) != USBD_OK)
   {
     Error_Handler();
   }
-  if (USBD_MSC_RegisterStorage(&hUsbDeviceFS, &USBD_Storage_Interface_fops_FS) != USBD_OK)
+  if (USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK)
   {
     Error_Handler();
   }

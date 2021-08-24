@@ -1,0 +1,56 @@
+T1430 000:031.109   SEGGER J-Link V7.22b Log File
+T1430 000:032.747   DLL Compiled: Jun 17 2021 17:22:49
+T1430 000:032.764   Logging started @ 2021-08-23 15:47
+T1430 000:032.780 - 32.788ms
+T1430 000:033.154 JLINK_SetWarnOutHandler(...)
+T1430 000:033.576 - 0.430ms
+T1430 000:033.596 JLINK_OpenEx(...)
+T1430 000:042.918   TELNET listener socket opened on port 19021
+T1430 000:043.086   WEBSRV Starting webserver
+T1430 000:043.366   WEBSRV Webserver running on local port 19080
+T1430 000:043.417 - 9.831ms returns "O.K."
+T1430 000:043.735 JLINK_GetEmuCaps()
+T1430 000:043.773 - 0.047ms returns 0x98E61B83
+T1430 000:044.089 JLINK_TIF_GetAvailable(...)
+T1430 000:044.125 - 0.043ms
+T1430 000:044.160 JLINK_SetErrorOutHandler(...)
+T1430 000:044.264 - 0.109ms
+T1430 000:044.771 JLINK_ExecCommand("ProjectFile = "E:\CubeMx\Bootloader_H750_SD-master_6\Bootloader_H750_SD-master\APP\MDK-ARM\JLinkSettings.ini"", ...). 
+T1430 000:088.568 - 43.810ms returns 0x00
+T1430 000:092.101 JLINK_ExecCommand("Device = STM32H750VBTx", ...). 
+T1430 000:092.426   Looking for J-Link GUI Server exe at: D:\Keil_v5\ARM\Segger\JLinkGUIServer.exe
+T1430 000:092.676   Looking for J-Link GUI Server exe at: C:\Program Files (x86)\SEGGER\JLink_V634e\\JLinkGUIServer.exe
+T1430 000:396.337   Failed to connect to J-Link GUI Server.
+T1430 006:503.326 - 0.431ms returns 0xFFFFFFFF
+T1430 006:506.336 JLINK_GetHardwareVersion()
+T1430 006:507.880 - 1.552ms returns 10000
+T1430 006:507.896 JLINK_GetDLLVersion()
+T1430 006:507.902 - 0.008ms returns 72202
+T1430 006:507.910 JLINK_GetOEMString(...)
+T1430 006:507.920 JLINK_GetFirmwareString(...)
+T1430 006:507.928 - 0.011ms
+T1430 006:516.132 JLINK_GetDLLVersion()
+T1430 006:516.152 - 0.023ms returns 72202
+T1430 006:516.160 JLINK_GetCompileDateTime()
+T1430 006:516.166 - 0.008ms
+T1430 006:519.287 JLINK_GetFirmwareString(...)
+T1430 006:519.368 - 0.084ms
+T1430 006:524.371 JLINK_GetHardwareVersion()
+T1430 006:524.395 - 0.027ms returns 10000
+T1430 006:526.945 JLINK_GetSN()
+T1430 006:526.956 - 0.014ms returns 1041384405
+T1430 006:529.700 JLINK_GetOEMString(...)
+T1430 006:535.753 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T1430 006:550.936 - 15.238ms returns 0x00
+T1430 006:551.027 JLINK_HasError()
+T1430 006:552.776 JLINK_SetSpeed(5000)
+T1430 006:553.936 - 1.209ms
+T1430 006:553.993 JLINK_GetId()
+T1430 006:555.013   
+  ***** Error: 
+T1430 006:555.055   No CPU core or target device has been selected. Please make sure at least the core J-Link shall connect to, is selected.
+T1430 006:555.063 - 1.072ms returns 0x00000000
+T1430 007:941.275 JLINK_Close()
+T1430 007:957.288 - 16.038ms
+T1430 007:957.319   
+T1430 007:957.325   Closed
