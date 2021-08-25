@@ -13,8 +13,8 @@ extern I2C_HandleTypeDef hi2c2;
 //[5]0 1 2 3 ... 127	
 //[6]0 1 2 3 ... 127	
 //[7]0 1 2 3 ... 127 		   
-uint8_t OLED_GRAM[128][8];
-uint8_t old_OLED_GRAM[128][8];
+volatile uint8_t OLED_GRAM[128][8];
+volatile uint8_t old_OLED_GRAM[128][8];
 //向设备写控制命令
 void OLED_WR_CMD(uint8_t cmd)
 {

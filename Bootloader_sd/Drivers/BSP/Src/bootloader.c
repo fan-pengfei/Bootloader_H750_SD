@@ -17,7 +17,6 @@ uint32_t crc32(unsigned char *buf,uint32_t size)
 uint8_t temp[1024*200];
 uint8_t text[100];
 extern FATFS SDFatFS;    /* File system object for SD logical drive */
-FIL fp_txt,fp_bin,fp_old_bin;
 uint32_t crc_temp_new,crc_temp_old;
 UINT bw;
 UINT br;
@@ -25,6 +24,7 @@ extern char SDPath[4];   /* SD logical drive path */
 void read_bin(void)
 {
 	FRESULT res;
+	FIL fp_txt,fp_bin;
 	if( f_mkdir("sd_bin")== FR_OK || f_mkdir("sd_bin")== FR_EXIST)
 	{
 		res=f_open(&fp_bin, "sd_bin/demo.bin", FA_READ);
@@ -69,6 +69,18 @@ void read_bin(void)
 		}
 	}
 	f_close(&fp_bin);
-	//f_close(&fp_txt);
+	if( f_mkdir("log")== FR_OK || f_mkdir("log")== FR_EXIST)
+	{
+		res=f_open(&fp_txt, "log/log.txt", FA_READ | FA_WRITE| FA_OPEN_ALWAYS);
+	}
+		// 如果打开文件成功，就可以写入数据
+	if (res == FR_OK)
+	{	
+		sprintf((char *)text,"new:0x%x,old:0x%x\n",crc_temp_new,crc_temp_old);
+		f_lseek(&fp_txt,f_size(&fp_txt));//
+		res = f_write(&fp_txt, text, 30, &bw);
+	}
+	f_close(&fp_txt);
+	HAL_Delay(100);
 
 }

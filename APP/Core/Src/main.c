@@ -115,7 +115,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  //read_bin();
+	read_bin();
     HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
     HAL_Delay(500);
 	usb_printf("Hello,Xiaofei!!!\r\nI am app!!!%d\r\n",s);
