@@ -12,6 +12,7 @@ typedef  void (*pFunction)(void);
 pFunction JumpToApplication;
 extern FATFS SDFatFS; 
 extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
+extern 	uint32_t crc_temp_new,crc_temp_old;;
 void SystemClock_Config(void);
 int main(void)
 {
@@ -30,18 +31,20 @@ int main(void)
         while(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_15)==0);
         HAL_Delay(100);
         MX_USB_DEVICE_Init();
-	    f_mount(&SDFatFS, (TCHAR const*)SDPath, 1);
+	    f_mount(&SDFatFS, "0:", 1);
 	    HAL_Delay(100);
         //QSPI_W25Qxx_Test();
-	    read_bin();
         while(1)
         {
+			
 			printf("\r\nBoot_loader running!\r\n");
 			printf("请把必要文件放到指定路径！\r\n");
 		    HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
 		    HAL_Delay(100);
             if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_15)==0)
             {
+				read_bin();
+				printf("crc:%x,%x\r\n",crc_temp_new,crc_temp_old);
                 HAL_PCD_MspDeInit(&hpcd_USB_OTG_FS);
 				SCB_DisableICache();		// 关闭ICache
 				SCB_DisableDCache();		// 关闭Dcache
@@ -60,6 +63,7 @@ int main(void)
 	    HAL_Delay(100);
         //QSPI_W25Qxx_Test();
 	    read_bin();
+		printf("crc:%x,%x\r\n",crc_temp_new,crc_temp_old);
         HAL_Delay(100);
         SCB_DisableICache();		// 关闭ICache
         SCB_DisableDCache();		// 关闭Dcache
