@@ -82,7 +82,7 @@ void OLED_Refresh_Gram(void)
 				OLED_WR_DATA(OLED_GRAM[n][i]); 
       		}
 		}
-  }   
+	}   
 	for(i=0;i<8;i++)  
 	{     
 		for(n=0;n<128;n++)

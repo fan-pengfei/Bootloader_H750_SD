@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>h7_usb_ext</TargetName>
+    <TargetName>h7_usb</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>

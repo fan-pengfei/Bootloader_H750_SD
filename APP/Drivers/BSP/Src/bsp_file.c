@@ -3,7 +3,7 @@
 #include "fatfs.h"
 #include "iic_oled.h"
 #include "usbd_cdc_if.h"
-uint8_t text[100]="Heollo,I'am Test!,xiaofei!!aabb";
+uint8_t text[100]="Heollo,I'am Test!,xiaofei!";
 uint8_t temp_bin[1024*128];
 extern volatile uint8_t OLED_GRAM[128][8];
 extern FATFS SDFatFS;    /* File system object for SD logical drive */
@@ -48,6 +48,7 @@ void read_bin(void)
 			}
 			OLED_Refresh_Gram();
 		}
+		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
 	}
 	f_close(&fp_bin);
 }

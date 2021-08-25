@@ -98,7 +98,7 @@ int main(void)
   MX_USB_DEVICE_Init();
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
-  s=f_mount(&SDFatFS, "0:", 1);
+  while(f_mount(&SDFatFS, "0:", 1)!=0);
    //QSPI_W25Qxx_Test();
 	OLED_Init();
 	OLED_Clear();

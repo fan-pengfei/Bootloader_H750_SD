@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>h7_usb_ext</TargetName>
+      <TargetName>h7_usb</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060960::V5.06 update 7 (build 960)::ARMCC</pCCUsed>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32H750xx,EXT_Flash_SPI</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;    ../FATFS/Target;    ../FATFS/App;    ../USB_DEVICE/App;    ../USB_DEVICE/Target;    ../Drivers/STM32H7xx_HAL_Driver/Inc;    ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;    ../Middlewares/Third_Party/FatFs/src;    ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;    ../Drivers/CMSIS/Device/ST/STM32H7xx/Include;    ../Drivers/CMSIS/Include;    ..\Drivers\BSP\Inc; ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc</IncludePath>
+              <IncludePath>../Core/Inc;      ../FATFS/Target;      ../FATFS/App;      ../USB_DEVICE/App;      ../USB_DEVICE/Target;      ../Drivers/STM32H7xx_HAL_Driver/Inc;      ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;      ../Middlewares/Third_Party/FatFs/src;      ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;      ../Drivers/CMSIS/Device/ST/STM32H7xx/Include;      ../Drivers/CMSIS/Include;      ..\Drivers\BSP\Inc;   ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1392,7 +1392,7 @@
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="4.3.0" condition="CMSIS Core">
         <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.5.0"/>
         <targetInfos>
-          <targetInfo name="h7_usb_ext"/>
+          <targetInfo name="h7_usb"/>
           <targetInfo name="h7_usb_flash"/>
         </targetInfos>
       </component>
