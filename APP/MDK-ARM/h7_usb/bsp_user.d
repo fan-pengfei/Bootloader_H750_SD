@@ -70,3 +70,12 @@ h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\mpu_wrappers.h
 h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\task.h
 h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\list.h
 h7_usb\bsp_user.o: ..\Drivers\Task\Inc\start_task.h
+h7_usb\bsp_user.o: ../FATFS/App/fatfs.h
+h7_usb\bsp_user.o: ../Middlewares/Third_Party/FatFs/src/ff.h
+h7_usb\bsp_user.o: ../Middlewares/Third_Party/FatFs/src/integer.h
+h7_usb\bsp_user.o: ../FATFS/Target/ffconf.h
+h7_usb\bsp_user.o: ../FATFS/Target/bsp_driver_sd.h
+h7_usb\bsp_user.o: ../FATFS/Target/fatfs_platform.h
+h7_usb\bsp_user.o: ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h
+h7_usb\bsp_user.o: ../Middlewares/Third_Party/FatFs/src/diskio.h
+h7_usb\bsp_user.o: ../FATFS/Target/sd_diskio.h

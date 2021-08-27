@@ -3,7 +3,7 @@
 #include "fatfs.h"
 #include "iic_oled.h"
 #include "usbd_cdc_if.h"
-uint8_t text[100]="Heollo,I'am Test!,xiaofei!";
+uint8_t text[100]="Hello,Xiaofei!";
 uint8_t temp_bin[1024*128];
 extern volatile uint8_t OLED_GRAM[128][8];
 extern FATFS SDFatFS;    /* File system object for SD logical drive */
@@ -21,7 +21,21 @@ void file_test(void)
 	// 如果打开文件成功，就可以写入数据
 	if (res == FR_OK)
 	{
-		res = f_write(&fp_txt, text, 50, &bw);
+		res = f_write(&fp_txt, text, 20, &bw);
+	}
+	f_close(&fp_txt);
+}
+void file_Read_test(void)
+{
+	FRESULT res;
+	if( f_mkdir("video")== FR_OK || f_mkdir("video")== FR_EXIST)
+	{
+		res=f_open(&fp_txt, "video/test.txt", FA_READ);
+	}
+	// 如果打开文件成功，就可以写入数据
+	if (res == FR_OK)
+	{
+		res = f_read(&fp_txt, text, 20, &bw);
 	}
 	f_close(&fp_txt);
 }

@@ -9,11 +9,19 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "start_task.h"
+#include "fatfs.h"
+
 extern TIM_HandleTypeDef htim2;
+uint8_t res;
+extern FATFS SDFatFS; 
 void bsp_init(void)
 {
+
     HAL_TIM_Base_Start_IT(&htim2);
     LCD_Init();
+    res = f_mount(&SDFatFS, "0:", 1);
+    file_test();
+    file_Read_test();
     //    while(1)
     //	{
     //        lcd_test();

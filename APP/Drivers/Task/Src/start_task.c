@@ -6,6 +6,7 @@
 #include "usbd_cdc_if.h"
 #include "spi_lcd.h"
 #include "bsp_user.h"
+#include "bsp_file.h"
 #define START_TASK_PRIO 1
 #define START_TASK_STK_SIZE 256
 TaskHandle_t Start_Task_Handler;
@@ -58,12 +59,14 @@ void led_task(void *pvParameters)
         vTaskDelay(300);
     }
 }
+extern uint8_t res;
+extern uint8_t text[100];
 void lcd_task(void *pvParameters)
 {
     while (1)
     {
         lcd_test();
-        usb_printf("Task2!\r\n");
+        usb_printf("Task2!%d%s\r\n", res,text);
         vTaskDelay(3);
     }
 }

@@ -67,3 +67,4 @@ h7_usb\start_task.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_io
 h7_usb\start_task.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 h7_usb\start_task.o: ..\Drivers\BSP\Inc\spi_lcd.h
 h7_usb\start_task.o: ..\Drivers\BSP\Inc\bsp_user.h
+h7_usb\start_task.o: ..\Drivers\BSP\Inc\bsp_file.h
