@@ -21,7 +21,10 @@
 #include "main.h"
 #include "fatfs.h"
 #include "i2c.h"
+#include "rng.h"
 #include "sdmmc.h"
+#include "spi.h"
+#include "tim.h"
 #include "usb_device.h"
 #include "gpio.h"
 
@@ -30,11 +33,13 @@
 #include "iic_oled.h"
 #include "usbd_cdc_if.h"
 #include "bsp_file.h"
+#include "spi_lcd.h"
+#include "bsp_user.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-extern FATFS SDFatFS;    /* File system object for SD logical drive */
+extern FATFS SDFatFS; /* File system object for SD logical drive */
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -70,9 +75,10 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	int s;
-	SCB_EnableICache();
-	SCB_EnableDCache();
+    SCB_EnableICache();
+    SCB_EnableDCache();
+	int cnt=0;
+	long old_tick;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -97,32 +103,31 @@ int main(void)
   MX_FATFS_Init();
   MX_USB_DEVICE_Init();
   MX_I2C2_Init();
+  MX_SPI1_Init();
+  MX_TIM2_Init();
+  MX_RNG_Init();
   /* USER CODE BEGIN 2 */
-  while(f_mount(&SDFatFS, "0:", 1)!=0);
-   //QSPI_W25Qxx_Test();
-	OLED_Init();
-	OLED_Clear();
-	OLED_Display_On();
-	OLED_ShowString(0,0,"Hello",16);
-	OLED_Refresh_Gram();
-	file_test();
+  bsp_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+    while (1)
+    {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	read_bin();
-    HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
-    HAL_Delay(500);
-	usb_printf("Hello,Xiaofei!!!\r\nI am app!!!%d\r\n",s);
-	HAL_Delay(5);
-	usb_printf("Hello,Xiaofei!!!\r\nI am app!\r\n");
-
-  }
+		show_rng();
+//		cnt++;
+//		LCD_Clear(RED);
+//		LCD_Clear(BLACK);
+//		if(cnt==10)
+//		{
+//			usb_printf("%d\r\n",HAL_GetTick()-old_tick);
+//			old_tick=HAL_GetTick();
+//			cnt=0;
+//		}
+    }
   /* USER CODE END 3 */
 }
 
@@ -150,8 +155,9 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 5;
@@ -183,15 +189,16 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_SDMMC|RCC_PERIPHCLK_I2C2
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RNG|RCC_PERIPHCLK_SPI1
+                              |RCC_PERIPHCLK_SDMMC|RCC_PERIPHCLK_I2C2
                               |RCC_PERIPHCLK_USB;
   PeriphClkInitStruct.PLL2.PLL2M = 25;
-  PeriphClkInitStruct.PLL2.PLL2N = 180;
-  PeriphClkInitStruct.PLL2.PLL2P = 2;
+  PeriphClkInitStruct.PLL2.PLL2N = 240;
+  PeriphClkInitStruct.PLL2.PLL2P = 4;
   PeriphClkInitStruct.PLL2.PLL2Q = 2;
   PeriphClkInitStruct.PLL2.PLL2R = 5;
   PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_0;
-  PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOMEDIUM;
+  PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOWIDE;
   PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
   PeriphClkInitStruct.PLL3.PLL3M = 25;
   PeriphClkInitStruct.PLL3.PLL3N = 192;
@@ -202,6 +209,8 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PLL3.PLL3VCOSEL = RCC_PLL3VCOWIDE;
   PeriphClkInitStruct.PLL3.PLL3FRACN = 0;
   PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL2;
+  PeriphClkInitStruct.Spi123ClockSelection = RCC_SPI123CLKSOURCE_PLL2;
+  PeriphClkInitStruct.RngClockSelection = RCC_RNGCLKSOURCE_HSI48;
   PeriphClkInitStruct.I2c123ClockSelection = RCC_I2C123CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_PLL3;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
@@ -224,11 +233,11 @@ void SystemClock_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
+    /* User can add his own implementation to report the HAL error return state */
+    __disable_irq();
+    while (1)
+    {
+    }
   /* USER CODE END Error_Handler_Debug */
 }
 
@@ -243,7 +252,7 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
+    /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }
