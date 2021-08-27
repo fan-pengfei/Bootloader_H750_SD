@@ -9,8 +9,8 @@ extern RNG_HandleTypeDef hrng;
 //管理LCD重要参数
 //默认为竖屏
 _lcd_dev lcddev;
-uint8_t gram[LCD_W * LCD_H *2] = {};
-uint8_t gram_old[LCD_W * LCD_H *2] = {};
+uint8_t gram[LCD_W * LCD_H * 2] = {};
+uint8_t gram_old[LCD_W * LCD_H * 2] = {};
 //画笔颜色,背景颜色
 uint16_t POINT_COLOR = 0x0000, BACK_COLOR = 0xFFFF;
 uint16_t DeviceCode;
@@ -21,34 +21,34 @@ uint8_t SPI_WriteByte(uint8_t data)
 void LCD_WR_REG(uint8_t data);
 void Update_GRAM_fast(void) //更新显存
 {
-   unsigned int i, j;
-	uint8_t data[2];
-	LCD_SetWindows(0, 0, lcddev.width - 1, lcddev.height - 1); //窗口为全屏
+    unsigned int i, j;
+    uint8_t data[2];
+    LCD_SetWindows(0, 0, lcddev.width - 1, lcddev.height - 1); //窗口为全屏
     LCD_RS_SET;
-	LCD_CS_CLR;
+    LCD_CS_CLR;
     for (i = 0; i < lcddev.height; i++)
     {
-		HAL_SPI_Transmit(&hspi1, gram+2*(i*lcddev.width), 2*lcddev.width, 1000);
+        HAL_SPI_Transmit(&hspi1, gram + 2 * (i * lcddev.width), 2 * lcddev.width, 1000);
     }
-    for (i = 0; i < 240 * 320*2; i++)
+    for (i = 0; i < 240 * 320 * 2; i++)
     {
         gram_old[i] = gram[i];
     }
-	LCD_CS_SET;
+    LCD_CS_SET;
 }
 void show_rng(void) //更新显存
 {
-	long i;
-	int a;
-    for (i = 0; i < 240 * 320*2; i++)
-    {	
-		srand((unsigned)i+HAL_GetTick());
-		a = rand();
-        gram[i] = a%256;
+    long i;
+    int a;
+    for (i = 0; i < 240 * 320 * 2; i++)
+    {
+        srand((unsigned)i + HAL_GetTick());
+        a = rand();
+        gram[i] = a % 256;
     }
-	Update_GRAM_fast();
+    Update_GRAM_fast();
 }
-	
+
 //void Update_GRAM(void) //更新显存
 //{
 //    unsigned int i, j;
@@ -64,20 +64,20 @@ void show_rng(void) //更新显存
 //				LCD_RS_CLR;
 //				SPI_WriteByte(lcddev.setxcmd);
 //				LCD_CS_SET;
-//				
+//
 //				LCD_CS_CLR;
 //				LCD_RS_SET;
 //				data[0]=j>>8;
 //				data[1]=j&0XFF;
 //				HAL_SPI_Transmit(&hspi1, data, 2, 1000);
 //				LCD_CS_SET;
-//				
-//				
+//
+//
 //				LCD_CS_CLR;
 //				LCD_RS_CLR;
 //				SPI_WriteByte(lcddev.setycmd);
 //				LCD_CS_SET;
-//				
+//
 //				LCD_CS_CLR;
 //				LCD_RS_SET;
 //				data[0]=i>>8;
@@ -89,7 +89,7 @@ void show_rng(void) //更新显存
 //				LCD_RS_CLR;
 //				SPI_WriteByte(lcddev.wramcmd);
 //				LCD_CS_SET;
-//				
+//
 //				LCD_CS_CLR;
 //				LCD_RS_SET;
 //				data[0]=gram[i * lcddev.width + j] >> 8;
@@ -204,12 +204,12 @@ void LCD_Clear(uint16_t Color)
     {
         for (m = 0; m < lcddev.width; m++)
         {
-            gram[2*(i * lcddev.width + m)] = Color>>8;
-            gram[2*(i * lcddev.width + m)+1] = Color;
+            gram[2 * (i * lcddev.width + m)] = Color >> 8;
+            gram[2 * (i * lcddev.width + m) + 1] = Color;
         }
     }
     //Update_GRAM();
-	Update_GRAM_fast();
+    Update_GRAM_fast();
 }
 /*****************************************************************************
  * @name       :void LCD_RESET(void)
@@ -235,7 +235,7 @@ void LCD_RESET(void)
 ******************************************************************************/
 void LCD_Init(void)
 {
-	long i;
+    long i;
     LCD_RESET(); //LCD 复位
                  //*************2.8inch ILI9341初始化**********//
     LCD_WR_REG(0xCF);
@@ -330,7 +330,7 @@ void LCD_Init(void)
     LCD_WR_REG(0x11); //Exit Sleep
     HAL_Delay(120);
     LCD_WR_REG(0x29); //display on
-	for (i = 0; i < 240 * 320; i++)
+    for (i = 0; i < 240 * 320; i++)
     {
         gram[i] = 0xff;
     }

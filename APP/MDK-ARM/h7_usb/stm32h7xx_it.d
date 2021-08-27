@@ -45,3 +45,12 @@ h7_usb\stm32h7xx_it.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h
 h7_usb\stm32h7xx_it.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h
 h7_usb\stm32h7xx_it.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h
 h7_usb\stm32h7xx_it.o: ../Core/Inc/stm32h7xx_it.h
+h7_usb\stm32h7xx_it.o: ..\Drivers\FreeRTOS\include\FreeRTOSConfig.h
+h7_usb\stm32h7xx_it.o: ..\Drivers\FreeRTOS\include\FreeRTOS.h
+h7_usb\stm32h7xx_it.o: ..\Drivers\FreeRTOS\include\projdefs.h
+h7_usb\stm32h7xx_it.o: ..\Drivers\FreeRTOS\include\portable.h
+h7_usb\stm32h7xx_it.o: ..\Drivers\FreeRTOS\include\deprecated_definitions.h
+h7_usb\stm32h7xx_it.o: ..\Drivers\FreeRTOS\portable\RVDS\ARM_CM7\r0p1\portmacro.h
+h7_usb\stm32h7xx_it.o: ..\Drivers\FreeRTOS\include\mpu_wrappers.h
+h7_usb\stm32h7xx_it.o: ..\Drivers\FreeRTOS\include\task.h
+h7_usb\stm32h7xx_it.o: ..\Drivers\FreeRTOS\include\list.h

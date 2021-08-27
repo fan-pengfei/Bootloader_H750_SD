@@ -60,3 +60,13 @@ h7_usb\bsp_user.o: ..\Drivers\BSP\Inc\bsp_file.h
 h7_usb\bsp_user.o: ..\Drivers\BSP\Inc\spi_lcd.h
 h7_usb\bsp_user.o: ..\Drivers\BSP\Inc\bsp_user.h
 h7_usb\bsp_user.o: ../Core/Inc/tim.h
+h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\FreeRTOSConfig.h
+h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\FreeRTOS.h
+h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\projdefs.h
+h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\portable.h
+h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\deprecated_definitions.h
+h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\portable\RVDS\ARM_CM7\r0p1\portmacro.h
+h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\mpu_wrappers.h
+h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\task.h
+h7_usb\bsp_user.o: ..\Drivers\FreeRTOS\include\list.h
+h7_usb\bsp_user.o: ..\Drivers\Task\Inc\start_task.h

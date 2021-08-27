@@ -16,6 +16,9 @@
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\CMSIS\\Include",
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\BSP\\Inc",
                 "e:\\CubeMx\\H750_sd\\APP\\Middlewares\\ST\\STM32_USB_Device_Library\\Class\\CDC\\Inc",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\include",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\portable\\RVDS\\ARM_CM7\\r0p1",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\Task\\Inc",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
                 "e:\\CubeMx\\H750_sd\\APP\\MDK-ARM",
@@ -24,7 +27,10 @@
                 "e:\\CubeMx\\H750_sd\\APP\\Middlewares\\Third_Party\\FatFs\\src\\option",
                 "e:\\CubeMx\\H750_sd\\APP\\Middlewares\\ST\\STM32_USB_Device_Library\\Core\\Src",
                 "e:\\CubeMx\\H750_sd\\APP\\Middlewares\\ST\\STM32_USB_Device_Library\\Class\\CDC\\Src",
-                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\BSP\\Src"
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\BSP\\Src",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\portable\\MemMang",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\Task\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",
@@ -129,7 +135,11 @@
                 "e:\\CubeMx\\H750_sd\\APP\\Middlewares\\Third_Party\\FatFs\\src\\option",
                 "e:\\CubeMx\\H750_sd\\APP\\Middlewares\\ST\\STM32_USB_Device_Library\\Core\\Src",
                 "e:\\CubeMx\\H750_sd\\APP\\Middlewares\\ST\\STM32_USB_Device_Library\\Class\\CDC\\Src",
-                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\BSP\\Src"
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\BSP\\Src",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\portable\\MemMang",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\portable\\RVDS\\ARM_CM7\\r0p1",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\Task\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

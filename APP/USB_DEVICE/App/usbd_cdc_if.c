@@ -304,12 +304,24 @@ uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
 {
   uint8_t result = USBD_OK;
   /* USER CODE BEGIN 7 */
+  uint32_t TimeStart = HAL_GetTick();
   USBD_CDC_HandleTypeDef *hcdc = (USBD_CDC_HandleTypeDef*)hUsbDeviceFS.pClassData;
-  if (hcdc->TxState != 0){
-    return USBD_BUSY;
+  //if (hcdc->TxState != 0) return USBD_BUSY;
+  while(hcdc->TxState)
+  {
+      if(HAL_GetTick()-TimeStart > 10)
+	return USBD_BUSY;
+      else
+	break;
   }
   USBD_CDC_SetTxBuffer(&hUsbDeviceFS, Buf, Len);
   result = USBD_CDC_TransmitPacket(&hUsbDeviceFS);
+  TimeStart = HAL_GetTick();
+  while(hcdc->TxState)
+    {
+        if(HAL_GetTick()-TimeStart > 10)
+          return USBD_BUSY;
+    }
   /* USER CODE END 7 */
   return result;
 }
@@ -338,7 +350,9 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 }
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
+
 #include <stdarg.h>
+ 
 void usb_printf(const char *format, ...)
 {
     va_list args;
@@ -350,18 +364,18 @@ void usb_printf(const char *format, ...)
     CDC_Transmit_FS(UserTxBufferFS, length);
 }
 //接收完成后通过usb回发数据
-void rxdata_printf(void)
-{
-  if(temp.flag)
-  {
-    usb_printf("%s\r\n", UserRxBufferFS);//若无需回发，屏蔽即可
-    temp.flag = 0;
-    temp.rxlen = 0;
-    memset(UserRxBufferFS, 0, APP_RX_DATA_SIZE);
-    USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS); 
-    USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-  }
-}
+//void rxdata_printf(void)
+//{
+//  if(temp.flag)
+//  {
+//    usb_printf("%s\r\n", UserRxBufferFS);//若无需回发，屏蔽即可
+//    temp.flag = 0;
+//    temp.rxlen = 0;
+//    memset(UserRxBufferFS, 0, APP_RX_DATA_SIZE);
+//    USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS); 
+//    USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+//  }
+//}
 
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
 
