@@ -10,7 +10,7 @@ extern RNG_HandleTypeDef hrng;
 //默认为竖屏
 _lcd_dev lcddev;
 uint8_t gram[LCD_W * LCD_H * 2] = {};
-uint8_t gram_old[LCD_W * LCD_H * 2] = {};
+//uint8_t gram_old[LCD_W * LCD_H * 2] = {};
 //画笔颜色,背景颜色
 uint16_t POINT_COLOR = 0x0000, BACK_COLOR = 0xFFFF;
 uint16_t DeviceCode;
@@ -30,10 +30,10 @@ void Update_GRAM_fast(void) //更新显存
     {
         HAL_SPI_Transmit(&hspi1, gram + 2 * (i * lcddev.width), 2 * lcddev.width, 1000);
     }
-    for (i = 0; i < 240 * 320 * 2; i++)
-    {
-        gram_old[i] = gram[i];
-    }
+    // for (i = 0; i < 240 * 320 * 2; i++)
+    // {
+    //     gram_old[i] = gram[i];
+    // }
     LCD_CS_SET;
 }
 void show_rng(void) //更新显存
@@ -190,6 +190,19 @@ void LCD_DrawPoint(uint16_t x, uint16_t y)
     Lcd_WriteData_16Bit(POINT_COLOR);
 }
 
+/*****************************************************************************
+ * @name       :void LCD_DrawPoint(uint16_t x,uint16_t y)
+ * @date       :2018-08-09 
+ * @function   :Write a pixel data at a specified location
+ * @parameters :x:the x coordinate of the pixel
+                y:the y coordinate of the pixel
+ * @retvalue   :None
+******************************************************************************/
+void LCD_DrawPoint_lvgl(uint16_t x, uint16_t y,uint16_t color)
+{
+    LCD_SetCursor(x, y); //设置光标位置
+    Lcd_WriteData_16Bit(color);
+}
 /*****************************************************************************
  * @name       :void LCD_Clear(uint16_t Color)
  * @date       :2018-08-09 

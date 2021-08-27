@@ -35,6 +35,9 @@
 #include "bsp_file.h"
 #include "spi_lcd.h"
 #include "bsp_user.h"
+#include "lv_conf.h"
+#include "lv_port_disp.h"
+#include "lvgl.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -239,6 +242,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     if (htim == (&htim2))
     {
         ms++;
+        lv_tick_inc(1);
         if (ms == 1000)
         {
             ms = 0;

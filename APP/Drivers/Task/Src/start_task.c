@@ -7,6 +7,11 @@
 #include "spi_lcd.h"
 #include "bsp_user.h"
 #include "bsp_file.h"
+#include "lv_conf.h"
+#include "lvgl.h"
+#include "lv_port_disp.h"
+#include "lv_ex_conf.h"
+#include "lv_demo_widgets.h"
 #define START_TASK_PRIO 1
 #define START_TASK_STK_SIZE 256
 TaskHandle_t Start_Task_Handler;
@@ -65,8 +70,9 @@ void lcd_task(void *pvParameters)
 {
     while (1)
     {
-        lcd_test();
-        usb_printf("Task2!%d%s\r\n", res,text);
-        vTaskDelay(3);
+        //lcd_test();
+        lv_task_handler();
+        usb_printf("Task2!%d%s\r\n", res, text);
+        vTaskDelay(10);
     }
 }

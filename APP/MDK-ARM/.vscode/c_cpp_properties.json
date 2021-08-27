@@ -19,6 +19,10 @@
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\include",
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\portable\\RVDS\\ARM_CM7\\r0p1",
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\Task\\Inc",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\examples\\porting",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl_app\\lv_examples\\src\\lv_demo_widgets",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
                 "e:\\CubeMx\\H750_sd\\APP\\MDK-ARM",
@@ -30,7 +34,15 @@
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\BSP\\Src",
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS",
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\portable\\MemMang",
-                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\Task\\Src"
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\Task\\Src",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_core",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_draw",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_font",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_gpu",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_hal",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_misc",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_themes",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_widgets"
             ],
             "defines": [
                 "USE_HAL_DRIVER",
@@ -139,7 +151,17 @@
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS",
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\portable\\MemMang",
                 "e:\\CubeMx\\H750_sd\\APP\\Drivers\\FreeRTOS\\portable\\RVDS\\ARM_CM7\\r0p1",
-                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\Task\\Src"
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\Task\\Src",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl_app\\lv_examples\\src\\lv_demo_widgets",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\examples\\porting",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_core",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_draw",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_font",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_gpu",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_hal",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_misc",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_themes",
+                "e:\\CubeMx\\H750_sd\\APP\\Drivers\\GUI\\lvgl\\src\\lv_widgets"
             ],
             "defines": [
                 "USE_HAL_DRIVER",
