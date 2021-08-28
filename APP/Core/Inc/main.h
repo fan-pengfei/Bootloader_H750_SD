@@ -33,7 +33,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "bsp_user.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -65,6 +65,16 @@ void Error_Handler(void);
 #define LCD_RESET_GPIO_Port GPIOC
 #define LCD_DC_Pin GPIO_PIN_5
 #define LCD_DC_GPIO_Port GPIOC
+#define Touch_CLK_Pin GPIO_PIN_8
+#define Touch_CLK_GPIO_Port GPIOD
+#define Touch_CS_Pin GPIO_PIN_9
+#define Touch_CS_GPIO_Port GPIOD
+#define Touch_DIN_Pin GPIO_PIN_10
+#define Touch_DIN_GPIO_Port GPIOD
+#define Touch_DOUT_Pin GPIO_PIN_14
+#define Touch_DOUT_GPIO_Port GPIOD
+#define Touch_EN_Pin GPIO_PIN_15
+#define Touch_EN_GPIO_Port GPIOD
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

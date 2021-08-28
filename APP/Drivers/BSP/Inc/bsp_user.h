@@ -4,4 +4,5 @@
 #include "main.h"
 void bsp_init(void);
 void lcd_test(void);
+void Delay_us(uint16_t us) ;
 #endif

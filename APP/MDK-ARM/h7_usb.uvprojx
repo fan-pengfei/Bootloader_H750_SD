@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32H750xx,EXT_Flash_SPI</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../FATFS/Target;../FATFS/App;../USB_DEVICE/App;../USB_DEVICE/Target;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FatFs/src;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;..\Drivers\BSP\Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;..\Drivers\FreeRTOS\include;..\Drivers\FreeRTOS\portable\RVDS\ARM_CM7\r0p1;..\Drivers\Task\Inc;..\Drivers\GUI;..\Drivers\GUI\lvgl;..\Drivers\GUI\lvgl\examples\porting;..\Drivers\GUI\lvgl_app\lv_examples\src\lv_demo_widgets</IncludePath>
+              <IncludePath>../Core/Inc;    ../FATFS/Target;    ../FATFS/App;    ../USB_DEVICE/App;    ../USB_DEVICE/Target;    ../Drivers/STM32H7xx_HAL_Driver/Inc;    ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;    ../Middlewares/Third_Party/FatFs/src;    ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;    ../Drivers/CMSIS/Device/ST/STM32H7xx/Include;    ../Drivers/CMSIS/Include;    ..\Drivers\BSP\Inc;    ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;    ..\Drivers\FreeRTOS\include;    ..\Drivers\FreeRTOS\portable\RVDS\ARM_CM7\r0p1;    ..\Drivers\Task\Inc;    ..\Drivers\GUI;    ..\Drivers\GUI\lvgl;    ..\Drivers\GUI\lvgl\examples\porting;    ..\Drivers\GUI\lvgl_app\lv_examples\src\lv_demo_widgets</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -437,11 +437,6 @@
               <FileName>stm32h7xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32h7xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7xx_hal_timebase_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/stm32h7xx_hal_timebase_tim.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -737,6 +732,11 @@
               <FileName>bsp_user.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Drivers\BSP\Src\bsp_user.c</FilePath>
+            </File>
+            <File>
+              <FileName>touch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\BSP\Src\touch.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1817,11 +1817,6 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32h7xx_hal_msp.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32h7xx_hal_timebase_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/stm32h7xx_hal_timebase_tim.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -2116,6 +2111,11 @@
               <FileName>bsp_user.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Drivers\BSP\Src\bsp_user.c</FilePath>
+            </File>
+            <File>
+              <FileName>touch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\BSP\Src\touch.c</FilePath>
             </File>
           </Files>
         </Group>

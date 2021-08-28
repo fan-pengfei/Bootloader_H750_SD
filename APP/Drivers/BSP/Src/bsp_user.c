@@ -15,14 +15,18 @@
 #include "lv_port_disp.h"
 #include "lv_ex_conf.h"
 #include "lv_demo_widgets.h"
+#include "touch.h"
 extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim6;
 uint8_t res;
 extern FATFS SDFatFS; 
 void bsp_init(void)
 {
-
+    int i;
     HAL_TIM_Base_Start_IT(&htim2);
+    HAL_TIM_Base_Start(&htim6);  
     LCD_Init();
+    TP_Init();
     res = f_mount(&SDFatFS, "0:", 1);
 	lv_init();
     lv_port_disp_init();
@@ -46,4 +50,9 @@ void lcd_test(void)
     i++;
     sprintf((char *)text_lcd, "num:%d", i);
     LCD_ShowString(0, 0, 16, text_lcd, 0, RED, WHITE);
+}
+void Delay_us(uint16_t us) 
+{
+    uint16_t startCnt = __HAL_TIM_GET_COUNTER(&htim6);
+    while ((__HAL_TIM_GET_COUNTER(&htim6) - startCnt) <= us);
 }

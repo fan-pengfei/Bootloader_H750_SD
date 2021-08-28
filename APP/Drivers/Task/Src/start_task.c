@@ -12,6 +12,8 @@
 #include "lv_port_disp.h"
 #include "lv_ex_conf.h"
 #include "lv_demo_widgets.h"
+#include "touch.h"
+
 #define START_TASK_PRIO 1
 #define START_TASK_STK_SIZE 256
 TaskHandle_t Start_Task_Handler;
@@ -64,15 +66,23 @@ void led_task(void *pvParameters)
         vTaskDelay(300);
     }
 }
+
 extern uint8_t res;
 extern uint8_t text[100];
+uint16_t X_touch, Y_touch;
+
 void lcd_task(void *pvParameters)
 {
+    uint8_t CMD_RDX = 0XD0;
+    uint8_t CMD_RDY = 0X90;
     while (1)
     {
         //lcd_test();
-        lv_task_handler();
-        usb_printf("Task2!%d%s\r\n", res, text);
-        vTaskDelay(10);
+        // lv_task_handler();
+        Y_touch = TP_Read_XOY(CMD_RDY);
+        X_touch = TP_Read_XOY(CMD_RDX);
+        //usb_printf("Task2!%d%s\r\n", res, text);
+        usb_printf("X:%d,Y:%d\r\n", X_touch, Y_touch);
+        vTaskDelay(100);
     }
 }
