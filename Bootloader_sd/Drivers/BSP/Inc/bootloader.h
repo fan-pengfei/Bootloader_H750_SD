@@ -74,6 +74,6 @@ static const uint32_t crc32tab[] = {
  0xb40bbe37L, 0xc30c8ea1L, 0x5a05df1bL, 0x2d02ef8dL 
 };
 
-uint32_t crc32(unsigned char *buf,uint32_t size);
+uint32_t crc32(uint32_t crcInit,uint8_t *buf, uint32_t size);
 #endif 
 

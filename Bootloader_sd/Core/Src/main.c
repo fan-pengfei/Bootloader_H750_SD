@@ -45,7 +45,9 @@ int main(void)
             if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_15)==0)
             {
 				read_bin();
-				printf("crc:%x,%x\r\n",crc_temp_new,crc_temp_old);
+					printf("crc:%x,%x\r\n",crc_temp_new,crc_temp_old);
+					HAL_Delay(100);
+				
                 HAL_PCD_MspDeInit(&hpcd_USB_OTG_FS);
 				HAL_SD_MspDeInit(&hsd1);
 				FATFS_UnLinkDriver("0:");
@@ -99,19 +101,20 @@ int main(void)
 	    HAL_Delay(100);
         //QSPI_W25Qxx_Test();
 	    read_bin();
-		printf("crc:%x,%x\r\n",crc_temp_new,crc_temp_old);
-        HAL_Delay(100);
-		HAL_SD_MspDeInit(&hsd1);
-		FATFS_UnLinkDriver("0:");
-		f_mount(NULL, "0:", 1);
-        SCB_DisableICache();		// 关闭ICache
-        SCB_DisableDCache();		// 关闭Dcache
-        SysTick->CTRL = 0;		// 关闭SysTick
-        SysTick->LOAD = 0;		// 清零重载值
-        SysTick->VAL = 0;			// 清零计数值
-        JumpToApplication = (pFunction) (*(__IO uint32_t*) (0x8012000 + 4));	// 设置起始地址
-        __set_MSP(*(__IO uint32_t*) 0x8012000);	// 设置主堆栈指针
-        JumpToApplication();			// 执行跳转
+			printf("crc:%x,%x\r\n",crc_temp_new,crc_temp_old);
+			HAL_Delay(100);
+
+		 HAL_SD_MspDeInit(&hsd1);
+		 FATFS_UnLinkDriver("0:");
+		 f_mount(NULL, "0:", 1);
+		 SCB_DisableICache();		// 关闭ICache
+		 SCB_DisableDCache();		// 关闭Dcache
+		 SysTick->CTRL = 0;		// 关闭SysTick
+		 SysTick->LOAD = 0;		// 清零重载值
+		 SysTick->VAL = 0;			// 清零计数值
+		 JumpToApplication = (pFunction) (*(__IO uint32_t*) (0x8012000 + 4));	// 设置起始地址
+		 __set_MSP(*(__IO uint32_t*) 0x8012000);	// 设置主堆栈指针
+		 JumpToApplication();			// 执行跳转
     }
 }
 

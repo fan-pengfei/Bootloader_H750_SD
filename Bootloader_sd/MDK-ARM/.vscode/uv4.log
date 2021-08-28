@@ -1,3 +1,36 @@
-Load "h7_usb\\h7_usb.axf" 
-Erase Done.Programming Done.Verify OK.Application running ...
-Flash Load finished at 16:54:34
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'h7_usb'
+compiling bootloader.c...
+..\Drivers\BSP\Src\bootloader.c(7): error:  #147-D: declaration is incompatible with "uint32_t crc32(unsigned char *, uint32_t)"  (declared at line 77 of "..\Drivers\BSP\Inc\bootloader.h")
+  uint32_t crc32(uint32_t crcInit,uint8_t *buf, uint32_t size)
+..\Drivers\BSP\Src\bootloader.c(39): warning:  #223-D: function "CalcCrc32" declared implicitly
+          crc_temp_old = CalcCrc32(crc_temp_old ^ 0xffffffff, temp, 64*1024);
+..\Drivers\BSP\Src\bootloader.c(44): warning:  #223-D: function "CalcCrc32" declared implicitly
+          crc_temp_old = CalcCrc32(crc_temp_old ^ 0xffffffff, temp, f_size(&fp_bin)%(1024*64));
+..\Drivers\BSP\Src\bootloader.c(49): error:  #167: argument of type "FIL" is incompatible with parameter of type "FIL *"
+          f_lseek(fp_bin,0);
+..\Drivers\BSP\Src\bootloader.c(28): warning:  #177-D: variable "fp_txt"  was declared but never referenced
+      FIL fp_txt, fp_bin;
+..\Drivers\BSP\Src\bootloader.c(74): error:  #79: expected a type specifier
+  f_close(&fp_bin);
+..\Drivers\BSP\Src\bootloader.c(74): warning:  #77-D: this declaration has no storage class or type specifier
+  f_close(&fp_bin);
+..\Drivers\BSP\Src\bootloader.c(74): error:  #147: declaration is incompatible with "FRESULT f_close(FIL *)"  (declared at line 243 of "../Middlewares/Third_Party/FatFs/src/ff.h")
+  f_close(&fp_bin);
+..\Drivers\BSP\Src\bootloader.c(75): error:  #169: expected a declaration
+  if (f_mkdir("log") == FR_OK || f_mkdir("log") == FR_EXIST)
+..\Drivers\BSP\Src\bootloader.c(86): warning:  #12-D: parsing restarts here after previous syntax error
+  f_close(&fp_txt);
+..\Drivers\BSP\Src\bootloader.c(87): error:  #79: expected a type specifier
+  HAL_Delay(100);
+..\Drivers\BSP\Src\bootloader.c(87): warning:  #77-D: this declaration has no storage class or type specifier
+  HAL_Delay(100);
+..\Drivers\BSP\Src\bootloader.c(87): error:  #147: declaration is incompatible with "void HAL_Delay(uint32_t)"  (declared at line 1040 of "../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h")
+  HAL_Delay(100);
+..\Drivers\BSP\Src\bootloader.c(88): error:  #169: expected a declaration
+  }
+..\Drivers\BSP\Src\bootloader.c: 6 warnings, 8 errors
+compiling main.c...
+"h7_usb\h7_usb.axf" - 8 Error(s), 6 Warning(s).
+Target not created.
+Build Time Elapsed:  00:00:02
